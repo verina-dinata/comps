@@ -1,7 +1,18 @@
-function Dropdown() {
+import { useState } from 'react'
+
+function Dropdown({ options }) {
+  const renderedOptions = options.map((option) => {
+    return(
+      <div key={option.value}>
+        {option.label}
+      </div>
+    );
+  });
+
   return(
     <div>
-      Dropdown
+      <div>Select ...</div>
+      <div>{renderedOptions}</div>
     </div>
   );
 }
