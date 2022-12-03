@@ -1,6 +1,7 @@
 import Accordion from "./components/Accordion";
 
 function App() {
+
   const items = [
     {
       id: 'asdaed',
