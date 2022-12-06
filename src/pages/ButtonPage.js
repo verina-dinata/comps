@@ -3,7 +3,6 @@ import { GoBell, GoDatabase } from 'react-icons/go';
 
 function ButtonPage() {
   const handleClick = () => {
-    console.log('Click!')
   };
 
   return (
