@@ -4,7 +4,7 @@ import { useState } from 'react';
 function SortableTable(props) {
   const [sortOrder, setSortOrder] = useState(null);
   const [sortBy, setSortBy] = useState(null);
-  const { config } = props;
+  const { config, data } = props;
 
   const handleClick = (label) => {
     if (sortOrder === null) {
@@ -28,10 +28,28 @@ function SortableTable(props) {
       header: () => <th onClick={() => handleClick(column.label)}>{column.label} IS SORTAABLE</th>
     }
   });
+
+  let sortedData = data;
+  if (sortOrder && sortBy) {
+    const { sortValue } = config.find(column => column.label === sortBy);
+    sortedData = [...data].sort((a, b) => {
+      const valueA = sortValue(a);
+      const valueB = sortValue(b);
+
+      const reverseOrder = sortOrder === 'asc' ? 1 : -1;
+
+      if (typeof valueA === 'string') {
+        return valueA.localeCompare(valueB) * reverseOrder;
+      } else {
+        return (valueA - valueB) * reverseOrder;
+      }
+    });
+  }
+
   return (
     <div>
       {sortOrder} - {sortBy}
-      <Table  {...props} config={upadtedConfig}/>
+      <Table  {...props} data={sortedData} config={upadtedConfig}/>
     </div>
   );
 };
