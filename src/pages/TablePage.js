@@ -10,13 +10,16 @@ function TablePage() {
 
   const config = [
     {
-      label: 'Fruits'
+      label: 'Name',
+      render: (fruit) => fruit.name
     },
     {
-      label: 'Color'
+      label: 'Color',
+      render: (fruit) => fruit.color
     },
     {
-      label: 'Score'
+      label: 'Score',
+      render: (fruit) => fruit.score
     },
   ]
 
