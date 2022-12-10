@@ -8,10 +8,19 @@ const reducer = (state, action) => {
       ...state,
       count: state.count + 1
     }
-  } else if (action.type === 'decrement') {
+  }
+
+  if (action.type === 'decrement') {
     return {
       ...state,
       count: state.count - 1
+    }
+  }
+
+  if (action.type === 'change-value-to-add') {
+    return {
+      ...state,
+      valueToAdd: action.payload
     }
   }
 };
@@ -41,7 +50,10 @@ function CounterPage({ initialCount }) {
   const handleChange = (event) => {
     const value = parseInt(event.target.value) || 0;
     // setValueToAdd(value)
-    dispatch();
+    dispatch({
+      type: 'change-value-to-add',
+      payload: value
+    });
   }
 
   const handleSubmit = (event) => {
